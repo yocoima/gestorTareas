@@ -27,7 +27,7 @@ export class BitacoraTareasComponent implements OnInit {
   ngOnInit() {
 }
 
-
+}
 
         // this.tareaLista=[]
         // item.forEach(element =>{

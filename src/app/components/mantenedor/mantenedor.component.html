@@ -1,0 +1,19 @@
+<div class="container formNewTarea shadow p-3 mb-5 bg-white rounded">
+  <form class="form-inline" #mantenedor="ngForm" (ngSubmit)="guardar(mantenedor)">
+
+        <!-- Clasificacion -->
+        <div class="form-group mx-sm-3 mb-2">
+
+            <label for="clasificacion" class="col"><h4>Clasificacion</h4></label>
+            <input
+            type="text"
+            class="form-control"
+            name="notas"
+            #notas="ngModel"
+            [(ngModel)]=conexionbdService.selectedTarea.notas
+            placeholder="Clasificacion"
+            >
+          </div>
+          <button type="submit" class="btn btn-primary mb-2">Crear</button>
+  </form>
+</div>
