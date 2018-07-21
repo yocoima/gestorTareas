@@ -12,6 +12,10 @@ import { Clasificacion, Importancia, Periodo } from '../../models/clasificacion'
 
 export class NewTareaComponent implements OnInit {
 
+// const URL ="https://appangular-1e41c.firebaseio.com/";
+UrlClasificacion: string = "clasifiacion.json";
+UrlImportancia: string = "Importancia.json";
+
 imprimirVarlor(){
   console.log('');
 }
@@ -24,31 +28,13 @@ imprimirVarlor(){
  SeleccionImportancia: string;
  SeleccionPerido: string;
 
-   // clasificacion: Clasificacion[] = [
-  //   {id: 1, name: 'Hardware'},
-  //   {id: 2, name: 'Software'}
-  // ]
-
-  // importancia: Importancia[] = [
-  //   {id: 0, name: 'Baja'},
-  //   {id: 1, name: 'Media'},
-  //   {id: 2, name: 'Alta'}
-  // ]
-
-  // periodo: Periodo[] = [
-  //   {id: 1, name: 'Diaria'},
-  //   {id: 2, name: 'Semanal'},
-  //   {id: 3, name: 'Quincenal'},
-  //   {id: 4, name: 'Mensual'},
-  //   {id: 5, name: 'Trimestral'},
-  //   {id: 6, name: 'Semestral'},
-  //   {id: 7, name: 'Anual'}
-  // ]
-
   constructor(private conexionbdService: ConexionbdService) {
 
 // combo clasificacion
-  conexionbdService.getobjects('https://appangular-1e41c.firebaseio.com/clasifiacion.json').subscribe(
+
+
+let url = `${this.UrlClasificacion}`;
+  conexionbdService.getobjects(url).subscribe(
   clasificacionTarea => {
     console.log(clasificacionTarea);
     Object.keys(clasificacionTarea).forEach(
@@ -61,7 +47,8 @@ imprimirVarlor(){
   )
 
 // combo Importancia
-  conexionbdService.getobjects('https://appangular-1e41c.firebaseio.com/importancia.json').subscribe(
+let url2 =`${this.UrlImportancia}`;
+  conexionbdService.getobjects(url2).subscribe(
   importanciaTarea => {
     console.log(importanciaTarea);
     Object.keys(importanciaTarea).forEach(
