@@ -22,6 +22,7 @@ import { Urls } from './models/urls';
 
 // RUTAS
 import { APP_ROUTING } from './app.routes';
+import { MantenedorComponent } from './components/mantenedor/mantenedor.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { APP_ROUTING } from './app.routes';
     InicioSesionComponent,
     NavbarComponent,
     NewTareaComponent,
-    BitacoraTareasComponent
+    BitacoraTareasComponent,
+    MantenedorComponent
   ],
   imports: [
     BrowserModule,

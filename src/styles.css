@@ -19,8 +19,18 @@
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
+.formMantenedor{
+	width: 400px;
+	border: 1px solid #E1E1E1;
+	border-radius: 4px;
+	padding: 15px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
 h3{
 	padding: 15px;
 	position: absolute;
-	
+
 }
