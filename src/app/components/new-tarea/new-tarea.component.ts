@@ -12,12 +12,8 @@ import { Clasificacion, Importancia, Periodo } from '../../models/clasificacion'
 
 export class NewTareaComponent implements OnInit {
 
-// const URL ="https://appangular-1e41c.firebaseio.com/";
-UrlClasificacion: string = "clasifiacion.json";
-UrlImportancia: string = "Importancia.json";
-
 imprimirVarlor(){
-  console.log('');
+
 }
 
 // Para llenar los combos
@@ -30,47 +26,43 @@ imprimirVarlor(){
 
   constructor(private conexionbdService: ConexionbdService) {
 
+  let urlClasificacion:string =
+  "https://appangular-1e41c.firebaseio.com/clasifiacion.json";
+  let UrlImportancia:string =
+  "https://appangular-1e41c.firebaseio.com/importancia.json";
+  let urlPeriodo:string =
+  "https://appangular-1e41c.firebaseio.com/periodo.json";
+
 // combo clasificacion
-
-
-let url = `${this.UrlClasificacion}`;
-  conexionbdService.getobjects(url).subscribe(
+  conexionbdService.getobjects(urlClasificacion).subscribe(
   clasificacionTarea => {
-    console.log(clasificacionTarea);
     Object.keys(clasificacionTarea).forEach(
-      keyCasificacion => {
-        console.log('key de clasifiacion es:', keyCasificacion)
-        this.ComboClasificacion.push(keyCasificacion);
+      key => {
+        this.ComboClasificacion.push(key);
         }
       )
     }
   )
 
 // combo Importancia
-let url2 =`${this.UrlImportancia}`;
-  conexionbdService.getobjects(url2).subscribe(
+conexionbdService.getobjects(UrlImportancia).subscribe(
   importanciaTarea => {
-    console.log(importanciaTarea);
     Object.keys(importanciaTarea).forEach(
-      keyImportancia => {
-        // console.log('key de clasifiacion es:', keyImportancia)
-        this.ComboImportancia.push(keyImportancia);
+      key => {
+        this.ComboImportancia.push(key);
       }
     )
   }
 )
-    conexionbdService.getobjects('https://appangular-1e41c.firebaseio.com/periodo.json').subscribe(
+    conexionbdService.getobjects(urlPeriodo).subscribe(
         periodosTarea => {
-            console.log(periodosTarea);
             Object.keys(periodosTarea).forEach(
-              keyPeriodo => {
-                // this.periodoCollection.push(peridos[k])
-                // console.log('el key es ',keyPeriodo)
-                this.ComboPeriodo.push(keyPeriodo);
+              key => {
+              this.ComboPeriodo.push(key);
               }
             )
           }
-    );
+        );
    }
 
   ngOnInit() {
@@ -83,6 +75,10 @@ let url2 =`${this.UrlImportancia}`;
     this.conexionbdService.insertTarea(newTarea.value);
     this.resetForm(newTarea);
 
+  }
+  borrar(newTarea: NgForm){
+    this.conexionbdService.deleteTarea(newTarea.value);
+    
   }
 
   resetForm(newTarea?: NgForm){

@@ -5,9 +5,7 @@ import { AngularFirestoreCollection} from 'angularfire2/firestore';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import * as firebase from 'firebase/app';
 import { Tareas } from '../models/tareas';
-
-// import 'rxjs/add/operator/map';
-// import { map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class ConexionbdService {
@@ -20,26 +18,14 @@ export class ConexionbdService {
     constructor(private firebase: AngularFireDatabase,
                 private http: HttpClient
     ){}
-
-
-
-
 // metodo obtener las tareas de la base de datos
     getTareas(){
       return this.tareaList = this.firebase.list('tareas');
-
     }
 
-// getobjects(){
-//   let url= 'https://appangular-1e41c.firebaseio.com/periodo.json';
-//   return this.http.get(url);
-// }
-
-getobjects(url: string){
-
-  //let url= 'https://appangular-1e41c.firebaseio.com/periodo.json';
-  return this.http.get(url);
-}
+    getobjects(url: string){
+    return this.http.get(url);
+    }
 
     insertTarea(tareas: Tareas){
       this.tareaList.push({
@@ -60,22 +46,8 @@ getobjects(url: string){
       });
     }
 
-    deleteTarea($id_tarea: string){
-      this.tareaList.remove($id_tarea);
-
+    deleteTarea(key$:string){
+      console.log(key$);
+      this.tareaList.remove(key$);
     }
-
-    // loginGoogle(){
-    //   return this.afAuth.auth.signInWithPopup (new firebase.auth.GoogleAuthProvider())
-    // }
-
-  //   getAuth(){
-  //   return this.afAuth.authState.map(auth => auth);
-  // }
-
-    // logout(){
-    //   return this.afAuth.auth.signOut();
-    // }
-
-
 }

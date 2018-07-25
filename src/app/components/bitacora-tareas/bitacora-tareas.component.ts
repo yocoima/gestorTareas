@@ -14,36 +14,30 @@ export class BitacoraTareasComponent implements OnInit {
 
   constructor(private _conexionbdService: ConexionbdService
   ) {
-
-    this._conexionbdService.getobjects('https://appangular-1e41c.firebaseio.com/tareas.json').subscribe(
+    let url:string = "https://appangular-1e41c.firebaseio.com/tareas.json";
+    this._conexionbdService.getobjects(url).subscribe(
     data => {
-      console.log(data);
+      // console.log(data);
       for( let  key$ in data ){
-        console.log(data[key$]);
+        // console.log(data[key$]);
         this.tareas.push( data[key$]);
       }
     })
 }
+
+borrar(key$:string){
+let url:string = "https://appangular-1e41c.firebaseio.com/tareas.json";
+  this._conexionbdService.getobjects(url).subscribe(
+  data => {
+    // console.log(data);
+    for( let  key$ in data ){
+      // console.log(data[key$]);
+      this._conexionbdService.deleteTarea(key$);
+  }
+})
+}
+
+
   ngOnInit() {
 }
 }
-
-
-        // this.tareaLista=[]
-        // item.forEach(element =>{
-        //   let tarea = element.payload.toJSON();
-        //   console.log(element)
-        //   tarea["$key"] = element.key;
-        //   this.tareaLista.push(tarea as Tareas);
-        // });
-
-  //       console.log (item);
-  //       Object.keys(item).forEach(
-  //       element => {
-  //         console.log('key de elemento es:', element)
-  //         this.tareaList.push(element)
-  //       }
-  //       )
-  //     }
-  //   )
-  // }
