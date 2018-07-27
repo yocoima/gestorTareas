@@ -5,7 +5,7 @@ import { AngularFirestoreCollection} from 'angularfire2/firestore';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import * as firebase from 'firebase/app';
 import { Tareas } from '../models/tareas';
-import { map } from 'rxjs/operators';
+// import { map } from 'rxjs/operators';
 
 @Injectable()
 export class ConexionbdService {
@@ -46,7 +46,7 @@ export class ConexionbdService {
       });
     }
 
-    deleteTarea(key$:string){
+    deleteTarea(key$: string){
       console.log(key$);
       this.tareaList.remove(key$);
     }

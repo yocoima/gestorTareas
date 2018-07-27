@@ -78,7 +78,7 @@ conexionbdService.getobjects(UrlImportancia).subscribe(
   }
   borrar(newTarea: NgForm){
     this.conexionbdService.deleteTarea(newTarea.value);
-    
+
   }
 
   resetForm(newTarea?: NgForm){
