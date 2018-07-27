@@ -10,6 +10,7 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/dat
 import { environment } from '../environments/environment';
 // SERVICIOS
 import { ConexionbdService } from './servicios/conexionbd.service';
+import { MantenedorService } from './servicios/mantenedor.service';
 
 // COMPONENTES
 import { AppComponent } from './app.component';
@@ -41,7 +42,7 @@ import { MantenedorComponent } from './components/mantenedor/mantenedor.componen
     FormsModule,
     HttpClientModule
   ],
-  providers: [ConexionbdService,Tareas, Urls, AngularFireDatabase],
+  providers: [ConexionbdService,Tareas, Urls, AngularFireDatabase, MantenedorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

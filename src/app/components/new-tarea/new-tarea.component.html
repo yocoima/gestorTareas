@@ -1,9 +1,13 @@
 
 <div class="container formNewTarea shadow p-3 mb-5 bg-white rounded">
   <form #newTarea="ngForm" (ngSubmit)="guardar(newTarea)">
+    <input type="hidden" name="key$" #key$="ngModel" [(ngModel)]="conexionbdService.selectedTarea.key$">
     <div class="">
-      <h4>Nueva Tarea</h4>
-      <br>
+      <div class="form-group col">
+        
+        <h5>Nueva Tarea</h5>
+        <br>
+      </div>
     </div>
 
       <!-- Tarea -->
@@ -25,7 +29,7 @@
       <div class="form-group col">
         <label for="clasificacion">Clasificacion</label>
         <select class="clasificacion" name="SeleccionClasificacion" [value]="clasificacion"
-        [(ngModel)]="SeleccionClasificacion" class="form-control" (change)="imprimirVarlor()">
+        [(ngModel)]="SeleccionClasificacion" class="form-control">
           <option value="">Seleccione...</option>
           <option *ngFor="let clasificacion of ComboClasificacion" >
           {{clasificacion}}
@@ -36,7 +40,7 @@
       <div class="form-group col">
         <label for="importancia">Importancia</label>
         <select class="importancia" name="SeleccionImportancia" [value]="import"
-        [(ngModel)]="SeleccionImportancia" class="form-control" (change)="imprimirVarlor()">
+        [(ngModel)]="SeleccionImportancia" class="form-control">
           <option value="">Seleccione...</option>
           <option *ngFor="let import of ComboImportancia">
           {{import}}
@@ -47,7 +51,7 @@
       <div class="form-group col">
         <label for="periodo">Periodo</label>
         <select class="periodo" name="SeleccionPeriodo" [value]="perio"
-        [(ngModel)]="SeleccionPeriodo" class="form-control" (change)="imprimirVarlor()">
+        [(ngModel)]="SeleccionPeriodo" class="form-control">
           <option value="">Seleccione...</option>
           <option *ngFor="let perio of ComboPeriodo" >
           {{perio}}

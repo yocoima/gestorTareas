@@ -1,4 +1,4 @@
 export class Urls {
-  UrlPeriodo: string = '';
+  UrlClasificacion: string = "https://appangular-1e41c.firebaseio.com/clasifiacion.json";
 
 }

@@ -11,11 +11,12 @@
 }
 
 .formNewTarea{
+	/* width:auto; */
 	border: 1px solid #E1E1E1;
 	border-radius: 4px;
 	padding: 15px;
 	position: absolute;
-	top: 50%;
+	top: 60%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 }

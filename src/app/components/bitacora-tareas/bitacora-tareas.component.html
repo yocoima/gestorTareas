@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor = "let tarea of tareas">
+      <tr *ngFor = "let tarea of tareaList">
         <td>{{tarea.descripcion}}</td>
         <td>{{tarea.SeleccionClasificacion}}</td>
         <td>{{tarea.SeleccionImportancia}}</td>
@@ -22,6 +22,7 @@
         <td>{{tarea.notas}}</td>
         <td><button type="button" class="btn btn-danger">Pendiente</button></td>
         <td><button type="button" class="btn btn-success">Realizado</button></td>
+        <td><button type="button" class="btn btn-success" (click)="borrar(tarea.key$)">Eliminar</button></td>
       </tr>
 
     </tbody>

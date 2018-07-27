@@ -13,7 +13,7 @@ import { Clasificacion, Importancia, Periodo } from '../../models/clasificacion'
 export class NewTareaComponent implements OnInit {
 
 imprimirVarlor(){
-  console.log('');
+
 }
 
 // Para llenar los combos
@@ -24,66 +24,45 @@ imprimirVarlor(){
  SeleccionImportancia: string;
  SeleccionPerido: string;
 
-   // clasificacion: Clasificacion[] = [
-  //   {id: 1, name: 'Hardware'},
-  //   {id: 2, name: 'Software'}
-  // ]
-
-  // importancia: Importancia[] = [
-  //   {id: 0, name: 'Baja'},
-  //   {id: 1, name: 'Media'},
-  //   {id: 2, name: 'Alta'}
-  // ]
-
-  // periodo: Periodo[] = [
-  //   {id: 1, name: 'Diaria'},
-  //   {id: 2, name: 'Semanal'},
-  //   {id: 3, name: 'Quincenal'},
-  //   {id: 4, name: 'Mensual'},
-  //   {id: 5, name: 'Trimestral'},
-  //   {id: 6, name: 'Semestral'},
-  //   {id: 7, name: 'Anual'}
-  // ]
-
   constructor(private conexionbdService: ConexionbdService) {
 
+  let urlClasificacion:string =
+  "https://appangular-1e41c.firebaseio.com/clasifiacion.json";
+  let UrlImportancia:string =
+  "https://appangular-1e41c.firebaseio.com/importancia.json";
+  let urlPeriodo:string =
+  "https://appangular-1e41c.firebaseio.com/periodo.json";
+
 // combo clasificacion
-  conexionbdService.getobjects('https://appangular-1e41c.firebaseio.com/clasifiacion.json').subscribe(
+  conexionbdService.getobjects(urlClasificacion).subscribe(
   clasificacionTarea => {
-    console.log(clasificacionTarea);
     Object.keys(clasificacionTarea).forEach(
-      keyCasificacion => {
-        console.log('key de clasifiacion es:', keyCasificacion)
-        this.ComboClasificacion.push(keyCasificacion);
+      key => {
+        this.ComboClasificacion.push(key);
         }
       )
     }
   )
 
 // combo Importancia
-  conexionbdService.getobjects('https://appangular-1e41c.firebaseio.com/importancia.json').subscribe(
+conexionbdService.getobjects(UrlImportancia).subscribe(
   importanciaTarea => {
-    console.log(importanciaTarea);
     Object.keys(importanciaTarea).forEach(
-      keyImportancia => {
-        // console.log('key de clasifiacion es:', keyImportancia)
-        this.ComboImportancia.push(keyImportancia);
+      key => {
+        this.ComboImportancia.push(key);
       }
     )
   }
 )
-    conexionbdService.getobjects('https://appangular-1e41c.firebaseio.com/periodo.json').subscribe(
+    conexionbdService.getobjects(urlPeriodo).subscribe(
         periodosTarea => {
-            console.log(periodosTarea);
             Object.keys(periodosTarea).forEach(
-              keyPeriodo => {
-                // this.periodoCollection.push(peridos[k])
-                // console.log('el key es ',keyPeriodo)
-                this.ComboPeriodo.push(keyPeriodo);
+              key => {
+              this.ComboPeriodo.push(key);
               }
             )
           }
-    );
+        );
    }
 
   ngOnInit() {
@@ -95,6 +74,10 @@ imprimirVarlor(){
     console.log(newTarea.value);
     this.conexionbdService.insertTarea(newTarea.value);
     this.resetForm(newTarea);
+
+  }
+  borrar(newTarea: NgForm){
+    this.conexionbdService.deleteTarea(newTarea.value);
 
   }
 

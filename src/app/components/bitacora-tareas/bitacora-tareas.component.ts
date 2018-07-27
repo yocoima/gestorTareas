@@ -10,40 +10,54 @@ export class BitacoraTareasComponent implements OnInit {
 
   // item: string []=[];
   tareas: any []=[];
-  // tareaLista: Tareas [];
 
-  constructor(private _conexionbdService: ConexionbdService
-  ) {
+  tareaList: Tareas [];
 
-    this._conexionbdService.getobjects('https://appangular-1e41c.firebaseio.com/tareas.json').subscribe(
-    data => {
-      console.log(data);
-      for( let  key$ in data ){
-        console.log(data[key$]);
-        this.tareas.push( data[key$]);
-      }
-    })
+  constructor(private _conexionbdService: ConexionbdService,
+              private _tarea: Tareas
+  ) {}
+//   {
+//     let url:string = "https://appangular-1e41c.firebaseio.com/tareas.json";
+//     this._conexionbdService.getobjects(url).subscribe(
+//     data => {
+//       // console.log(data);
+//       for( let  key$ in data ){
+//         // console.log(data[key$]);
+//         this.tareas.push( data[key$]);
+//       }
+//     })
+// }
+
+// borrar(key$:string){
+// let url:string = "https://appangular-1e41c.firebaseio.com/tareas.json";
+//   this._conexionbdService.getobjects(url).subscribe(
+//   data => {
+//     // console.log(data);
+//     for( let  key$ in data ){
+//       console.log(data[key$]);
+//       this._conexionbdService.deleteTarea(data[key$]);
+//   }
+// })
+// }
+ngOnInit() {
+  return this._conexionbdService.getTareas()
+  .snapshotChanges().subscribe(item => {
+    this.tareaList = [];
+    item.forEach(element => {
+      let x = element.payload.toJSON();
+      x["key$"] = element.key;
+      this.tareaList.push(x as Tareas);
+    });
+  });
 }
-  ngOnInit() {
+
+borrar(key$:string){
+    this._conexionbdService.deleteTarea(key$);
+
 }
+
+
+
+
+
 }
-
-
-        // this.tareaLista=[]
-        // item.forEach(element =>{
-        //   let tarea = element.payload.toJSON();
-        //   console.log(element)
-        //   tarea["$key"] = element.key;
-        //   this.tareaLista.push(tarea as Tareas);
-        // });
-
-  //       console.log (item);
-  //       Object.keys(item).forEach(
-  //       element => {
-  //         console.log('key de elemento es:', element)
-  //         this.tareaList.push(element)
-  //       }
-  //       )
-  //     }
-  //   )
-  // }
